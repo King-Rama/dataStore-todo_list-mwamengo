@@ -1,0 +1,11 @@
+{
+    "Sitetitle": "Angular Multi Language Site",
+    "Name": "Enter your name",
+    "NameError": "I am sure you must have a name!",
+    "Email": "Email address",
+    "PhoneNo": "Phone No",
+    "Password": "Password",
+    "Bio": "Enter your self details here",
+    "TermsConditions": "I agree to terms and conditions of system.",
+    "Submit": "Submit"
+}

@@ -28,6 +28,7 @@
     "@ngrx/schematics": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
+    "@ngx-translate/core": "^13.0.0",
     "@types/uuid": "^8.3.0",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
