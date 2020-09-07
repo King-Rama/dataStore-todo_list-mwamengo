@@ -1,4 +1,4 @@
-
+/** Todo selectors */
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { TodoState, selectAll } from './todo.reducers';
 

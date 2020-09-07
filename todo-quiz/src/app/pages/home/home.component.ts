@@ -7,10 +7,10 @@ import { filter, map } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
+  /** angular material sidenav settings */
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = true;
   isShowing = false;
@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
       this.isShowing = false;
     }
   }
+
   constructor(
     private titleService: Title,
     private router: Router,
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /** Title service for routes */
     const appTitle = this.titleService.getTitle();
     this.router.events
       .pipe(
@@ -50,5 +52,4 @@ export class HomeComponent implements OnInit {
         this.titleService.setTitle(ttl);
       });
   }
-
 }

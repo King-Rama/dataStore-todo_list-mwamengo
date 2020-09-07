@@ -15,11 +15,11 @@ import { getAllTodos } from '../../../../store/todo.selectors';
   providers: [TodoService],
 })
 export class ListTodoComponent implements OnInit {
+  /** ngx Pagination  */
   p = 1;
+  /** Todos fetching into variables */
   todos: Observable<Todo[]>;
-
   todoToBeUpdated: Todo;
-
   isUpdateActivated = false;
 
   constructor(
@@ -28,18 +28,21 @@ export class ListTodoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /****** Fetch todos*/
     this.todos = this.store.select(getAllTodos);
   }
-
+  /** delete todos */
   deleteTodo(todoId: string): void {
     this.store.dispatch(todoActionTypes.deleteTodo({ todoId }));
   }
 
+  /** update form */
   showUpdateForm(todo: Todo): void {
     this.todoToBeUpdated = { ...todo };
     this.isUpdateActivated = true;
   }
 
+  /** update todos */
   updateTodo(updateForm): void {
     const update: Update<Todo> = {
       id: this.todoToBeUpdated.id,

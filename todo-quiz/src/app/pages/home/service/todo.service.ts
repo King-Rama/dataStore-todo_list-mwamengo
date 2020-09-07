@@ -4,51 +4,45 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Todo } from '../models/todo.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  /**
-   * Adding content-type to the API endponts
-   */
-   todoUrl = '../../../assets/json/todos.json';
+  /** API url configurations */
+  todoUrl = '../../../assets/json/todos.json';
 
-   httpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
+  constructor(private http: HttpClient) {}
 
-  http: HttpClient;
-
-
-  constructor(http: HttpClient) {
-    this.http = http;
-  }
-
-  getAllTodos(): Observable<any> {
-    return this.http.get<any>(this.todoUrl).pipe(
+  /** Fetch all todos */
+  getAllTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.todoUrl).pipe(
       tap((_) => this.log('fetched All Todo')),
-      catchError(this.handleError<any>('getAllTodo', []))
+      catchError(this.handleError<Todo[]>('getAllTodo', []))
     );
   }
-
+  /** Create todos */
   createTodo(todo: Todo): Observable<Todo> {
-    return this.http.post<Todo>('/api/odos', todo).pipe(
+    return this.http.post<Todo>(this.todoUrl, todo).pipe(
       tap((_) => this.log('create Todo')),
       catchError(this.handleError<Todo[]>('createTodo', []))
     );
   }
 
-  deleteTodo(TodoId: string): Observable<any> {
-    return this.http.delete('/api/todos/' + TodoId).pipe(
+  /** delete todos */
+  deleteTodo(todoId: string): Observable<any> {
+    return this.http.delete(this.todoUrl + todoId).pipe(
       tap((_) => this.log('deleted todo')),
       catchError(this.handleError<Todo[]>('deleteTodo', []))
     );
   }
 
-  updateTodo(TodoId: string | number, changes: Partial<Todo>): Observable<any> {
-    return this.http.put('/api/todos/' + TodoId, changes).pipe(
+  /** update todos */
+  updateTodo(todoId: string | number, changes: Partial<Todo>): Observable<any> {
+    return this.http.put(this.todoUrl + todoId, changes).pipe(
       tap((_) => this.log('Updated Todo')),
       catchError(this.handleError<Todo[]>('updatedTodo', []))
     );

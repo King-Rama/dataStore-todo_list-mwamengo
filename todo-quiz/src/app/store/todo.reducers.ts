@@ -1,11 +1,10 @@
-
+/** NGRX TODO reducers */
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { todoActionTypes } from './todo.actions';
 import { Todo } from '../pages/home/models/todo.model';
 
 export interface TodoState extends EntityState<Todo> {
-  // [x: string]: any;
   todosLoaded: boolean;
 }
 

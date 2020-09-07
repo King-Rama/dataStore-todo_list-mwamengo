@@ -1,28 +1,32 @@
-<div class="pt-4 mt-4">
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Todo Type</th>
-          <th scope="col">Todo Name</th>
-          <th scope="col">Todo Description</th>
-          <th scope="col">Updated Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let todo of todos | async | paginate: { itemsPerPage: 10, currentPage: p }">
-          <td>{{ todo.todoType }}</td>
-          <td>{{ todo.todoName }}</td>
-          <td>{{ todo.todoDescription }}</td>
-          <td>{{ todo.updatedAt }}</td>
-          <td>
-            <button (click)="showUpdateForm(todo)" class="btn btn-primary" style="margin: 5px">Update</button>
-            <button (click)="deleteTodo(todo.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="bg-white">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+<div class="pt-4">
+    <div class="card m-2">
+      <h2 class="text-right pr-5">List of Todos</h2>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Todo Type</th>
+            <th scope="col">Todo Name</th>
+            <th scope="col">Todo Description</th>
+            <th scope="col">Updated Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todos | async | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td>{{ todo.todoType }}</td>
+            <td>{{ todo.todoName }}</td>
+            <td>{{ todo.todoDescription }}</td>
+            <td>{{ todo.updatedAt }}</td>
+            <td>
+              <button (click)="showUpdateForm(todo)" class="btn btn-primary" style="margin: 5px">Update</button>
+              <button (click)="deleteTodo(todo.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bg-white">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </div>
   
     <div *ngIf="isUpdateActivated" class="mt-5 mb-5 pl-5 pr-5">

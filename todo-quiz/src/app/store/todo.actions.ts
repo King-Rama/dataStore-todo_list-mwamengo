@@ -1,4 +1,4 @@
-
+/** Todo ngrx actions CRUD */
 import { createAction, props } from '@ngrx/store';
 import {Update} from '@ngrx/entity';
 import { Todo } from '../pages/home/models/todo.model';

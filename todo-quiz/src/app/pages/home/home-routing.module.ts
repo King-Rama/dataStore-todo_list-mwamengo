@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'todos/add',
+        redirectTo: 'todos/list',
         pathMatch: 'full',
         data: { title: 'Todo List' },
       },
