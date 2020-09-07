@@ -1,0 +1,51 @@
+<div class="jumbotron mt-2" style="min-height: 100vh;">
+
+    <div fxLayout="row wrap" fxLayoutAlign="center center" class="row-height" >
+      <mat-card fxFlex="50%" fxFlex.md="70%" fxFlex.sm="90%" fxFlex.xs="100%" class="login-form">
+          <mat-card-title class="text-center p-4">
+            <div class="text-center">DHIS2 TODOS APPLICATION</div></mat-card-title>
+  
+          <mat-card-content fxLayout="column">
+                  <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+              
+                    <div class="form-group">
+                      <label for="todoType">Todo Type</label>
+                      <input
+                        type="text"
+                        id="todoType"
+                        name="todoType"
+                        class="form-control"
+                        ngModel
+                        required/>
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="todoName">Todo Name</label>
+                      <input
+                        type="text"
+                        id="todoName"
+                        name="todoName"
+                        class="form-control"
+                        ngModel
+                        required/>
+                    </div>
+              
+              
+                    <div class="form-group">
+                      <label for="todoDescription">Todo Description</label>
+                      <input
+                        type="text"
+                        id="todoDescription"
+                        name="todoDescription"
+                        class="form-control"
+                        ngModel
+                        required/>
+                    </div>
+                    <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save</button>
+                  </form>   
+               
+          </mat-card-content>
+      </mat-card>
+    </div>
+    
+    </div>

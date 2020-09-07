@@ -1,0 +1,76 @@
+<div class="pt-4 mt-4">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Todo Type</th>
+          <th scope="col">Todo Name</th>
+          <th scope="col">Todo Description</th>
+          <th scope="col">Updated Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos | async">
+          <td>{{ todo.todoType }}</td>
+          <td>{{ todo.todoName }}</td>
+          <td>{{ todo.todoDescription }}</td>
+          <td>{{ todo.updatedAt }}</td>
+          <td>
+            <button (click)="showUpdateForm(todo)" class="btn btn-primary" style="margin: 5px">Update</button>
+            <button (click)="deleteTodo(todo.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="isUpdateActivated" class="mt-5 mb-5 pl-5 pr-5">
+      <div fxLayout="row wrap" fxLayoutAlign="center center" class="row-height" >
+        <mat-card fxFlex="45%" fxFlex.md="65%" fxFlex.sm="90%" fxFlex.xs="100%" class="login-form">
+            <mat-card-title class="text-center p-4">
+              <div class="text-center">DHIS2 TODOS APPLICATION</div></mat-card-title>
+    
+            <mat-card-content fxLayout="column">
+      <form (ngSubmit)="updateTodo(updateForm)" #updateForm="ngForm">
+  
+        <div class="form-group">
+          <label for="todoType">Todo Type</label>
+          <input
+            type="text"
+            id="todoType"
+            name="todoType"
+            class="form-control"
+            required
+            [(ngModel)]="todoToBeUpdated.todoType"
+            style="width: 400px"/>
+        </div>
+  
+          <div class="form-group">
+            <label for="todoName">Todo Name</label>
+          <input
+            type="text"
+            id="todoName"
+            name="todoName"
+            class="form-control"
+            required
+            [(ngModel)]="todoToBeUpdated.todoName"
+            style="width: 400px"/>
+        </div>
+  
+        <div class="form-group">
+          <label for="todoDescription">Todo Description</label>
+          <input
+            type="text"
+            id="todoDescription"
+            name="todoDescription"
+            class="form-control"
+            required
+            [(ngModel)]="todoToBeUpdated.todoDescription"
+            style="width: 400px"/>
+        </div>
+  
+        <button [disabled]="updateForm.invalid" class="btn btn-primary" type="submit">Update</button>
+      </form> 
+               
+    </mat-card-content>
+  </mat-card>
+  </div>
+  </div>
