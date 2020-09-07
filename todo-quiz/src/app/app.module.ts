@@ -1,3 +1,4 @@
+/** App module for todo mwamengo published */
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 /** ngx Translation module */
