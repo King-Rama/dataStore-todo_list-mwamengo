@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { Todo } from '../models/todo.model';
 
 
@@ -12,17 +12,24 @@ export class TodoService {
   /**
    * Adding content-type to the API endponts
    */
-  private todoUrl = '../../../assets/json/todos.json';
+   todoUrl = '../../../assets/json/todos.json';
+
+   httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+
+
   http: HttpClient;
+
 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
-  getAllTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.todoUrl).pipe(
+  getAllTodos(): Observable<any> {
+    return this.http.get<any>(this.todoUrl).pipe(
       tap((_) => this.log('fetched All Todo')),
-      catchError(this.handleError<Todo[]>('getAllTodo', []))
+      catchError(this.handleError<any>('getAllTodo', []))
     );
   }
 

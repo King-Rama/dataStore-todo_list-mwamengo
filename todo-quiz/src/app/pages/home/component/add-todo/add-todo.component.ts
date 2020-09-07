@@ -13,7 +13,10 @@ import * as uuid from 'uuid';
   providers: [TodoService],
 })
 export class AddTodoComponent implements OnInit {
-  constructor(private store: Store<TodoState>) {}
+  constructor(
+    private todoService: TodoService,
+    private store: Store<TodoState>
+  ) {}
 
   ngOnInit(): void {}
 

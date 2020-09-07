@@ -12,29 +12,31 @@ import { getAllTodos } from '../../../../store/todo.selectors';
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
   styleUrls: ['./list-todo.component.scss'],
-  providers: [TodoService]
+  providers: [TodoService],
 })
 export class ListTodoComponent implements OnInit {
-
-
+  p = 1;
   todos: Observable<Todo[]>;
 
   todoToBeUpdated: Todo;
 
   isUpdateActivated = false;
 
-  constructor(private courseService: TodoService, private store: Store<TodoStateApp>) { }
+  constructor(
+    private todoService: TodoService,
+    private store: Store<TodoStateApp>
+  ) {}
 
   ngOnInit(): void {
     this.todos = this.store.select(getAllTodos);
   }
 
   deleteTodo(todoId: string): void {
-    this.store.dispatch(todoActionTypes.deleteTodo({todoId}));
+    this.store.dispatch(todoActionTypes.deleteTodo({ todoId }));
   }
 
   showUpdateForm(todo: Todo): void {
-    this.todoToBeUpdated = {...todo};
+    this.todoToBeUpdated = { ...todo };
     this.isUpdateActivated = true;
   }
 
@@ -43,11 +45,11 @@ export class ListTodoComponent implements OnInit {
       id: this.todoToBeUpdated.id,
       changes: {
         ...this.todoToBeUpdated,
-        ...updateForm.value
-      }
+        ...updateForm.value,
+      },
     };
 
-    this.store.dispatch(todoActionTypes.updateTodo({update}));
+    this.store.dispatch(todoActionTypes.updateTodo({ update }));
 
     this.isUpdateActivated = false;
     this.todoToBeUpdated = null;
