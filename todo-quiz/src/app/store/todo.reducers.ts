@@ -5,17 +5,17 @@ import { todoActionTypes } from './todo.actions';
 import { Todo } from '../pages/home/models/todo.model';
 
 export interface TodoState extends EntityState<Todo> {
-  [x: string]: any;
-  TodosLoaded: boolean;
+  // [x: string]: any;
+  todosLoaded: boolean;
 }
 
 export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
 
 export const initialState = adapter.getInitialState({
-  TodosLoaded: false
+  todosLoaded: false
 });
 
-export const TodoReducer = createReducer(
+export const todoReducer = createReducer(
   initialState,
 
   on(todoActionTypes.todosLoaded, (state, action) => {
